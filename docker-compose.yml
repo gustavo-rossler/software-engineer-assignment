@@ -1,0 +1,93 @@
+version: "3.9"
+
+networks:
+  app-network:
+    name: app-network
+
+services:
+  nginx-php:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/dockerfile
+    env_file:
+      - ./.env
+    depends_on:
+      - php
+      - mysql
+    container_name: ${API_NAME}-nginx
+    ports:
+      - ${API_HTTP_PORT}:80
+      - ${API_HTTPS_PORT}:443
+    volumes:
+      - ./src/php:/var/www/html
+    networks:
+      - app-network
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/dockerfile
+    env_file:
+      - ./.env
+    container_name: ${API_NAME}-php
+    volumes:
+      - ./src/php:/var/www/html
+    networks:
+      - app-network
+
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8.0.27
+    env_file:
+      - ./.env
+    container_name: ${API_NAME}-mysql
+    ports:
+      - ${API_DB_PORT}:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+
+  composer:
+    image: composer:latest
+    env_file:
+      - ./.env
+    container_name: ${API_NAME}-composer
+    volumes:
+      - ./src/php:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: [ 'composer', 'install' ]
+    networks:
+      - app-network
+    depends_on:
+      php:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+
+  artisan:
+    build:
+      context: .
+      dockerfile: ./docker/php/dockerfile
+    env_file:
+      - ./.env
+    container_name: ${API_NAME}-artisan
+    volumes:
+      - ./src/php:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: [ 'php', 'artisan' ]
+    command: >
+      migrate
+    networks:
+      - app-network
+    depends_on:
+      php:
+        condition: service_started
+      composer:
+        condition: service_completed_successfully
+      mysql:
+        condition: service_healthy
