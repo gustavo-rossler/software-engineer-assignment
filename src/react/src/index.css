@@ -1,0 +1,65 @@
+:root {
+  font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  --bs-font-sans-serif: Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-border-color: #EEEFF5;
+}
+
+body {
+  background-color: #F7F9FB;
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+p {
+  color: #565E7C;
+  font-weight: 400;
+}
+
+.btn {
+  font-size: 14px;
+  padding: 8px;
+}
+
+.btn-primary {
+  --bs-btn-bg: #213D55;
+  --bs-btn-border-color: #213D55;
+  --bs-btn-hover-bg: #172b3c;
+  --bs-btn-hover-border-color: #122230;
+  --bs-btn-active-bg: #122230;
+  --bs-btn-active-border-color: #172b3c;
+  --bs-btn-disabled-bg: #213D55;
+  --bs-btn-disabled-border-color: #213D55;
+}
+
+table {
+  color: #282C3A;
+}
+
+table tr th {
+  font-weight: 500;
+}
+
+table tr td {
+  vertical-align: middle;
+}
+
+.dropdown-toggle::after {
+  content: '';
+  display: none;
+}
+
+table tr td strong {
+  font-weight: 500;
+}
+
+.dropdown-item {
+  font-size: 14px;
+}
