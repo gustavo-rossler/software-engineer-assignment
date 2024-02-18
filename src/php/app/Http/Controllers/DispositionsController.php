@@ -25,7 +25,26 @@ class DispositionsController extends Controller
             ]);
         } catch (\Throwable $th) {
             return response()->json([
-                'error' => $th->getMessage(),
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function findByCandidateId(int $candidateId): JsonResponse
+    {
+        try {
+            $disposition = $this->dispositionsRepository->findByCandidateId($candidateId);
+            if (!$disposition) {
+                return response()->json([
+                    'message' => 'Disposition not found.',
+                ], 404);
+            }
+            return response()->json([
+                'disposition' => $disposition,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
             ]);
         }
     }

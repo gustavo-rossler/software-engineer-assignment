@@ -27,6 +27,25 @@ class CandidatesController extends Controller
         }
     }
 
+    public function find(int $id): JsonResponse
+    {
+        try {
+            $candidate = $this->candidatesRepository->find($id);
+            if (!$candidate) {
+                return response()->json([
+                    'message' => 'Candidate not found.',
+                ], 404);
+            }
+            return response()->json([
+                'candidate' => $candidate,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function upsert(UpsertCandidateRequest $request): JsonResponse
     {
         try {
@@ -37,7 +56,7 @@ class CandidatesController extends Controller
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
-                'error' => $th->getMessage(),
+                'message' => $th->getMessage(),
             ]);
         }
     }

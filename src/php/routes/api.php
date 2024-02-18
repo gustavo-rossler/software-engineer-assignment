@@ -24,6 +24,7 @@ Route::group(['prefix' => '/v1'], function() {
     Route::group(['prefix' => '/candidates'], function() {
         Route::get('/', [CandidatesController::class, 'index']);
         Route::get('/{id}', [CandidatesController::class, 'find']);
+        Route::get('/{id}/disposition', [DispositionsController::class, 'findByCandidateId']);
         Route::put('/', [CandidatesController::class, 'upsert']);
     });
     Route::group(['prefix' => '/dispositions'], function() {

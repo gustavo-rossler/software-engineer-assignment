@@ -25,4 +25,10 @@ interface IDispositionsRepository
      * @return ?Disposition
      */
     public function find(int $id): ?Disposition;
+
+    /**
+     * @param int $candidateId
+     * @return ?Disposition
+     */
+    public function findByCandidateId(int $candidateId): ?Disposition;
 }

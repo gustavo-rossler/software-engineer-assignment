@@ -38,4 +38,13 @@ class EloquentDispositionsRepository implements IDispositionsRepository
     {
         return Disposition::find($id);
     }
+
+    /**
+     * @param int $candidateId
+     * @return ?Disposition
+     */
+    public function findByCandidateId(int $candidateId): ?Disposition
+    {
+        return Disposition::where('candidate_id', $candidateId)->first();
+    }
 }
