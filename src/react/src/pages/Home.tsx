@@ -25,8 +25,11 @@ function Home() {
   }
 
   useEffect(() => {
-    fetchCandidates()
-  }, [])
+    if (candidates.length === 0) {
+      console.log('fetchCandidates()')
+      fetchCandidates()
+    }
+  }, [candidates])
 
   return (
     <>

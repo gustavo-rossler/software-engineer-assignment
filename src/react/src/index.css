@@ -18,6 +18,12 @@ h3 {
   line-height: 30px;
 }
 
+h4 {
+  font-size: 16px;
+  line-height: 30px;
+  color: #15171F;
+}
+
 p {
   color: #565E7C;
   font-weight: 400;
@@ -62,4 +68,17 @@ table tr td strong {
 
 .dropdown-item {
   font-size: 14px;
+}
+
+.form-control {
+  font-size: 14px;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #444444;
+}
+
+.form-label i {
+  font-weight: 400;
 }
