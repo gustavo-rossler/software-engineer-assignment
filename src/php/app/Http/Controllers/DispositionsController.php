@@ -13,6 +13,23 @@ class DispositionsController extends Controller
         private IDispositionsRepository $dispositionsRepository,
     ) { }
 
+    public function find(int $id): JsonResponse
+    {
+        try {
+            $disposition = $this->dispositionsRepository->find($id);
+            if (!$disposition) {
+                throw new \Exception('Disposition not found.');
+            }
+            return response()->json([
+                'disposition' => $disposition,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => $th->getMessage(),
+            ]);
+        }
+    }
+
     public function upsert(UpsertDispositionRequest $request): JsonResponse
     {
         try {

@@ -19,4 +19,10 @@ interface IDispositionsRepository
      * @return ?Disposition
      */
     public function upsert(array $data): ?Disposition;
+
+    /**
+     * @param int $id
+     * @return ?Disposition
+     */
+    public function find(int $id): ?Disposition;
 }

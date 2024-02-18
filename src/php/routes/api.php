@@ -28,5 +28,6 @@ Route::group(['prefix' => '/v1'], function() {
     });
     Route::group(['prefix' => '/dispositions'], function() {
         Route::put('/', [DispositionsController::class, 'upsert']);
+        Route::get('/{id}', [DispositionsController::class, 'find']);
     });
 });

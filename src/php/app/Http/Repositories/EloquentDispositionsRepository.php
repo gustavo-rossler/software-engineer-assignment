@@ -29,4 +29,13 @@ class EloquentDispositionsRepository implements IDispositionsRepository
             'candidate_id' => $data['candidate_id'],
         ], $data);
     }
+
+    /**
+     * @param int $id
+     * @return ?Disposition
+     */
+    public function find(int $id): ?Disposition
+    {
+        return Disposition::find($id);
+    }
 }
