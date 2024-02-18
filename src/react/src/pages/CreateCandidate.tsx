@@ -17,7 +17,6 @@ function CreateCandidate() {
       setLoading(true)
       const repo = new CandidatesRepository()
       const response = await repo.saveCandidate(data)
-      console.log(response)
       if (response.candidate) {
         setCreated(true)
       } else if (response.message) {

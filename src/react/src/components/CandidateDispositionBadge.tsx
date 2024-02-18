@@ -2,20 +2,21 @@ import { Alert } from "react-bootstrap"
 import { DispositionType } from "../models/Disposition"
 
 export interface ICandidateDispositionBadgeProps {
-    disposition: DispositionType
+    disposition: string
 }
 
 function CandidateDispositionBadge({ disposition }: ICandidateDispositionBadgeProps) {
     const variation = (): string => {
         switch (disposition) {
-            case DispositionType.undecided: return 'light';
-            case DispositionType.rejected: return 'danger';
-            case DispositionType.hired: return 'success';
+            case 'undecided': return 'light'
+            case 'rejected': return 'danger'
+            case 'hired': return 'success'
+            default: return ''
         }
     }
 
     return (
-        <Alert variant={variation()} className="p-2 m-0 d-inline border-0">{disposition}</Alert>
+        <Alert variant={variation()} className="p-2 m-0 d-inline border-0">{DispositionType[disposition]}</Alert>
     )
 }
 

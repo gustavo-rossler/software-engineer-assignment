@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import Home from "./pages/Home"
 import CreateCandidate from "./pages/CreateCandidate"
 import UpdateCandidate from "./pages/UpdateCandidate"
+import SetDisposition from "./pages/SetDisposition"
 
 export default createBrowserRouter([
   {
@@ -15,5 +16,9 @@ export default createBrowserRouter([
   {
     path: '/candidates/edit/:id',
     element: <UpdateCandidate />,
+  },
+  {
+    path: '/candidates/disposition/:id',
+    element: <SetDisposition />,
   },
 ])

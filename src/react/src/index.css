@@ -82,3 +82,7 @@ table tr td strong {
 .form-label i {
   font-weight: 400;
 }
+
+select option, .form-select {
+  font-size: 14px;
+}

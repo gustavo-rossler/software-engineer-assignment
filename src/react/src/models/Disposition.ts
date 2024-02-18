@@ -22,8 +22,8 @@ export enum RejectedReason {
 }
 
 export enum Currency {
-    USD = '$',
-    EUR = '€',
+    usd = '$',
+    eur = '€',
 }
 
 export interface DispositionApi {
@@ -51,11 +51,11 @@ export interface Disposition {
 export function createDispositionFromApi(data: DispositionApi): Disposition {
     return {
         createdAt: new Date(data.updated_at),
-        disposition: DispositionType[data.disposition as DispositionType],
+        disposition: data.disposition as DispositionType,
         id: data.id,
-        currency: data.currency ? Currency[data.currency as Currency] : null,
+        currency: data.currency,
         fee: data.fee,
-        hireTytpe: data.hire_type ? HiredType[data.hire_type as HiredType] : null,
-        rejectionReason: data.rejection_reason ? RejectedReason[data.rejection_reason as RejectedReason] : null,
+        hireTytpe: data.hire_type as HiredType,
+        rejectionReason: data.rejection_reason as RejectedReason,
     }
 }

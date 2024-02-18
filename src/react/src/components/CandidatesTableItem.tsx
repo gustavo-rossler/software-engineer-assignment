@@ -3,6 +3,7 @@ import { Candidate } from "../models/Candidate"
 import CandidateDispositionBadge from "./CandidateDispositionBadge"
 import { ContentFormatter } from "../helpers/ContentFormatter"
 import CandidateItemDropDown from './CandidateItemDropDown'
+import { HiredType } from '../models/Disposition'
 
 export interface ICandidatesTableItemProps {
   candidate: Candidate
@@ -24,7 +25,7 @@ function CandidatesTableItem({ candidate }: ICandidatesTableItemProps) {
         {!candidate.disposition && '-'}
       </td>
       <td>
-        {candidate?.disposition?.hireTytpe ?? '-'}
+        {candidate?.disposition?.hireTytpe ? HiredType[candidate?.disposition?.hireTytpe] : '-'}
       </td>
       <td>
         {

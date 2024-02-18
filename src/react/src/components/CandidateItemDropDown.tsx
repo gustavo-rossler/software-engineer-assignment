@@ -16,7 +16,6 @@ function CandidateItemDropDown({ candidate }: ICandidateItemDropDownProps) {
             <Dropdown.Menu>
                 <Dropdown.Item href={`candidates/edit/${candidate.id}`}>Edit</Dropdown.Item>
                 <Dropdown.Item href={`candidates/disposition/${candidate.id}`}>Set disposition</Dropdown.Item>
-                <Dropdown.Item href={`candidates/delete/${candidate.id}`}>Delete</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     )

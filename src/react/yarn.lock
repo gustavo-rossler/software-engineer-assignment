@@ -1577,6 +1577,11 @@ react-bootstrap@^2.10.1:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
+react-currency-input-field@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-currency-input-field/-/react-currency-input-field-3.7.0.tgz#a9f8635ac26f455d1ef0829a209bfed9b7b32a29"
+  integrity sha512-FW/VHnwuzu6BgODDRdvm2kLaigsn3s/vLUQA1RbpxpTx8TrtcFTdp5NzX17t6Hh6SHqlMEKrhCYiOMXFDVI/QA==
+
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
