@@ -34,7 +34,15 @@ The secondary model `Disposition` is related to the `Candidate` model and has th
 
 ## Running the code
 
-*This section should be updated with the required instructions to run your project*.
+To run the project you must have docker + compose installed and running on your computer.
+
+Enter in the project folder and run the command:
+```
+docker compose up -d
+```
+
+When all the project containers are up and running you can test the application at:
+http://localhost:3009/
 
 
 ## Assignment tasks
