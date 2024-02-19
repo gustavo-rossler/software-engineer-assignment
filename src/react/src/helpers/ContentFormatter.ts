@@ -1,4 +1,4 @@
-import { Currency } from "../models/Disposition"
+import { currencies, dispositionOptionType } from "../models/Disposition"
 
 export class ContentFormatter {
     public static formatDate(date: Date): string {
@@ -11,12 +11,12 @@ export class ContentFormatter {
         return `${formattedDate} at ${formattedTime}`
     }
 
-    public static formatMoney(value: number, currency: Currency): string {
+    public static formatMoney(value: number, currency: string): string {
         const money = value.toLocaleString('en-US', {
             maximumFractionDigits: 2,
             minimumFractionDigits: 2,
         })
 
-        return `${Currency[currency]} ${money}`
+        return `${currencies[currency as keyof dispositionOptionType]} ${money}`
     }
 }

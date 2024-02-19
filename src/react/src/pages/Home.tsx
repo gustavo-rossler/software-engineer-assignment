@@ -8,8 +8,9 @@ import { CandidatesRepository } from "../repositories/CandidatesRepository";
 import { Spinner } from "react-bootstrap";
 
 function Home() {
-  const [candidates, setCandidates] = useState<Candidate[]>([])
+  const [candidates, setCandidates] = useState<Candidate[]>()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const fetchCandidates = async () => {
     try {
@@ -17,15 +18,15 @@ function Home() {
       const repo = new CandidatesRepository()
       const data = await repo.fetchCandidates()
       setCandidates(data)
-    } catch (error) {
-      console.error(error)
+    } catch (e: any) {
+      setError(e?.message ?? error.toString())
     } finally {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    if (candidates.length === 0) {
+    if (candidates === undefined) {
       fetchCandidates()
     }
   }, [candidates])
@@ -36,7 +37,7 @@ function Home() {
         <Link to="candidates/create" className="btn btn-primary">Create candidate</Link>
       </Header>
       <Body>
-        {!loading && candidates.length === 0 && (
+        {!loading && candidates !== undefined && candidates?.length === 0 && (
           <>
             <h3>No candidates found</h3>
             <p>Create your first candidate</p>
@@ -45,7 +46,7 @@ function Home() {
             </p>
           </>
         )}
-        {!loading && candidates.length > 0 && <CandidatesTable candidates={candidates} />}
+        {!loading && candidates !== undefined && candidates.length > 0 && <CandidatesTable candidates={candidates} />}
         {loading && <div className="text-center p-5"><Spinner /></div>}
       </Body>
     </>

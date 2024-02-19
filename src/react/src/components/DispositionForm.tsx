@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react"
 import { Button, Col, Form, Row } from "react-bootstrap"
-import { Disposition, DispositionType, HiredType, RejectedReason } from "../models/Disposition"
+import { Disposition, dispositionTypes, hiredTypes, rejectedReasons } from "../models/Disposition"
 import { Link } from "react-router-dom"
 import CurrencyInput from "react-currency-input-field";
 
@@ -81,7 +81,7 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
             <div className="mb-3">
               <Form.Check
                 inline
-                label={DispositionType.hired}
+                label={dispositionTypes.hired}
                 type="radio"
                 id="disposition-type-hired"
                 value="hired"
@@ -90,7 +90,7 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
               />
               <Form.Check
                 inline
-                label={DispositionType.rejected}
+                label={dispositionTypes.rejected}
                 type="radio"
                 id="disposition-type-rejected"
                 value="rejected"
@@ -106,7 +106,7 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
                 <div className="mb-3">
                   <Form.Check
                     inline
-                    label={HiredType.internal}
+                    label={hiredTypes.internal}
                     type="radio"
                     id="hire-type-hired"
                     name="hire-type"
@@ -117,7 +117,7 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
                   />
                   <Form.Check
                     inline
-                    label={HiredType.external}
+                    label={hiredTypes.external}
                     type="radio"
                     id="hire-type-external"
                     name="hire-type"
@@ -139,7 +139,7 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
                       value={feeValue}
                       decimalsLimit={2}
                       allowDecimals={true}
-                      onValueChange={(value, name, values) => setFeeValue(values?.formatted ?? '')}
+                      onValueChange={(_, __, values) => setFeeValue(values?.formatted ?? '')}
                       className="form-control"
                       required={data.currency !== undefined && data.currency !== '' ? true : false}
                     />
@@ -166,8 +166,8 @@ function DispositionForm({ disposition, onSave }: IDispositionFormProps) {
               value={data.rejection_reason}
             >
               <option></option>
-              {Object.keys(RejectedReason).map((key) => (
-                <option value={key} key={key}>{RejectedReason[key]}</option>
+              {Object.keys(rejectedReasons).map((key) => (
+                <option value={key} key={key}>{rejectedReasons[key]}</option>
               ))}
             </Form.Select>
           </Form.Group>}
