@@ -23,7 +23,9 @@ class EloquentDispositionsRepository implements IDispositionsRepository
     {
         // Clear old values
         $data['hire_type'] = $data['hire_type'] ?? null;
-        $data['rejection_reason'] = $data['rejection_reason'] ?? '';
+        $data['rejection_reason'] = $data['rejection_reason'] ?? null;
+        $data['fee'] = $data['fee'] ?? null;
+        $data['currency'] = $data['currency'] ?? null;
 
         return Disposition::updateOrCreate([
             'candidate_id' => $data['candidate_id'],

@@ -17,6 +17,6 @@ export class ContentFormatter {
             minimumFractionDigits: 2,
         })
 
-        return `${currency} ${money}`
+        return `${Currency[currency]} ${money}`
     }
 }
